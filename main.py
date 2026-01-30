@@ -2,7 +2,7 @@
 # Streamlit Smart Water Usage Project Website (Module 1 -> Modules 2-4 scaffolding)
 # Requirements: streamlit, pandas, requests, scikit-learn, matplotlib, seaborn, mlxtend
 # pip install streamlit pandas requests scikit-learn matplotlib seaborn mlxtend
-
+import streamlit as st
 import pandas as pd
 import numpy as np
 import requests

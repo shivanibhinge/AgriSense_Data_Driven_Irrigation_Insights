@@ -8,23 +8,8 @@ import pandas as pd
 import numpy as np
 import requests
 from datetime import datetime
-import matplotlib.pyplot as plt
-import seaborn as sns
 from io import StringIO, BytesIO
 
-from sklearn.decomposition import PCA
-from sklearn.cluster import KMeans
-from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeRegressor, DecisionTreeClassifier, plot_tree
-from sklearn.svm import SVR, SVC
-from sklearn.naive_bayes import GaussianNB
-from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import mean_squared_error, r2_score, accuracy_score, confusion_matrix, classification_report
-
-# For apriori (ARM)
-# from mlxtend.frequent_patterns import apriori, association_rules
-# from mlxtend.preprocessing import TransactionEncoder
 
 st.set_page_config(layout="wide", page_title="Smart Water Usage — Project Website")
 

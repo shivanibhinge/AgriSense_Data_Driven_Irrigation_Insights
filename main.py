@@ -3,7 +3,6 @@
 # Requirements: streamlit, pandas, requests, scikit-learn, matplotlib, seaborn, mlxtend
 # pip install streamlit pandas requests scikit-learn matplotlib seaborn mlxtend
 
-import main as st
 import pandas as pd
 import numpy as np
 import requests

@@ -154,6 +154,8 @@ with tabs[0]:
     The aim is to represent an iterative data science process that collects real API data, cleans and transforms it then conducts exploratory analysis to identify key factors of soil moisture and evapotranspiration and then will apply machine learning techniques to predict irrigation needs. The final website will present results which are easy to understand for stakeholders (like farmers, policy makers, and the public) and can understand and act upon.
     """)
 
+    st.markdown("""GitHub Link : https://github.com/shivanibhinge/AgriSense_Data_Driven_Irrigation_Insights/tree/main""")
+
     st.subheader("Ten Research Questions")
     questions = [
         "How does daily precipitation affect soil moisture at 0–10 cm depth?",
@@ -229,60 +231,222 @@ with tabs[2]:
     st.markdown("""
     Exploratory Data Analysis (EDA) was performed to understand trends, variability,
     and relationships between weather conditions and soil moisture parameters.
+    The 10 visualizations below walk through the key patterns found in the AgriSense dataset.
     """)
 
+    # ── Viz 1 ──────────────────────────────────────────────────────
     col1, col2 = st.columns([1.2, 1])
     with col1:
-        st.image("images/daily_weather_soil_moisture_trends.png", caption="Daily Weather & Soil Moisture Trends", use_container_width=True)
+        st.image("images/daily_weather_soil_moisture_trends.png",
+                 caption="Viz 1 — Daily Weather & Soil Moisture Trends",
+                 use_container_width=True)
     with col2:
         st.markdown("""
-        **Daily Weather Soil Moisture Trends**
+        **Viz 1 — Daily Weather & Soil Moisture Trends**
 
-        This time-series plot displays how daily maximum temperature, rainfall, and soil moisture change over time. A clear seasonal pattern is visible in temperature, with higher values in summer and lower values in winter. Rainfall occurs in irregular spikes, and increases in rainfall are often followed by small rises in soil moisture.
+        This time-series plot shows how daily maximum temperature, rainfall, and soil moisture
+        change over the full dataset period. A clear seasonal rhythm is visible — temperatures
+        peak every summer and drop every winter. Rainfall appears as irregular spikes rather
+        than a steady flow, and small rises in soil moisture typically follow those rainfall
+        events shortly after. This is one of the clearest signs that precipitation directly
+        drives soil water availability.
         """)
 
     st.divider()
+
+    # ── Viz 2 ──────────────────────────────────────────────────────
     col1, col2 = st.columns([1.2, 1])
     with col1:
-        st.image("images/monthly_soil_moisture.png", caption="Monthly Soil Moisture Box Plot", use_container_width=True)
+        st.image("images/monthly_soil_moisture.png",
+                 caption="Viz 2 — Monthly Soil Moisture Box Plot",
+                 use_container_width=True)
     with col2:
         st.markdown("""
-        **Monthly Soil Moisture Trends**
+        **Viz 2 — Monthly Soil Moisture Variation**
 
-        This boxplot displays the distribution and variability of soil moisture across months. Soil moisture levels are highest and most stable during winter months. As the year progresses into late spring and summer, soil moisture decreases sharply and becomes more variable, reflecting higher evaporation rates and increased plant water uptake.
+        This box plot shows how soil moisture is spread across each month of the year.
+        Winter months show the highest and most stable soil moisture — the soil stays
+        reliably wet with little day-to-day variation. As spring arrives moisture starts
+        dropping, and by July–September it hits its lowest point with the most variability.
+        This summer dip lines up directly with peak irrigation demand — when the soil is
+        driest and most unpredictable.
         """)
 
     st.divider()
+
+    # ── Viz 3 ──────────────────────────────────────────────────────
     col1, col2 = st.columns([1.2, 1])
     with col1:
-        st.image("images/max_temp_rainfall.png", caption="Max Temperature vs Rainfall", use_container_width=True)
+        st.image("images/max_temp_rainfall.png",
+                 caption="Viz 3 — Max Temperature vs Rainfall",
+                 use_container_width=True)
     with col2:
         st.markdown("""
-        **Maximum Temperature vs Rainfall**
+        **Viz 3 — Maximum Temperature vs Rainfall**
 
-        Most heavy rainfall events occur at lower to moderate temperatures, while very high temperatures are generally associated with little or no rainfall — suggesting an inverse relationship between heat and precipitation.
+        This scatter plot compares daily maximum temperature against rainfall amounts.
+        The pattern is clear — heavy rainfall events almost always occur at lower or
+        moderate temperatures, while the hottest days have zero or near-zero rainfall.
+        This is a critical insight: the days that crops need water the most are also
+        the days least likely to receive it naturally, making irrigation essential
+        during peak summer heat.
         """)
 
     st.divider()
+
+    # ── Viz 4 ──────────────────────────────────────────────────────
     col1, col2 = st.columns([1.2, 1])
     with col1:
-        st.image("images/rainfall_soil_moisture.png", caption="Rainfall vs Soil Moisture", use_container_width=True)
+        st.image("images/rainfall_soil_moisture.png",
+                 caption="Viz 4 — Rainfall vs Soil Moisture",
+                 use_container_width=True)
     with col2:
         st.markdown("""
-        **Rainfall vs Soil Moisture**
+        **Viz 4 — Rainfall vs Soil Moisture**
 
-        Higher rainfall values are generally associated with higher soil moisture levels. However, variability shows that soil moisture is also influenced by evaporation and prior soil conditions.
+        This scatter plot looks at how rainfall and shallow soil moisture relate to each other.
+        Higher rainfall days do tend to have higher soil moisture, but the relationship is not
+        perfectly tight — there is noticeable spread. This tells us that soil moisture is not
+        determined by rainfall alone. Prior soil conditions, evaporation rate, and temperature
+        all play a role. A small rain shower can still leave very dry soil if it follows a
+        long dry stretch, meaning rainfall alone is not a reliable irrigation guide.
         """)
 
     st.divider()
+
+    # ── Viz 5 ──────────────────────────────────────────────────────
     col1, col2 = st.columns([1.2, 1])
     with col1:
-        st.image("images/avg_evaporation.png", caption="Average Evapotranspiration by Month", use_container_width=True)
+        st.image("images/avg_evaporation.png",
+                 caption="Viz 5 — Average Evapotranspiration by Month",
+                 use_container_width=True)
     with col2:
         st.markdown("""
-        **Average Evapotranspiration by Month**
+        **Viz 5 — Average Evapotranspiration by Month**
 
-        ET values increase steadily from winter to early summer, reaching a peak during June and July. This pattern reflects rising temperatures, longer daylight hours, and increased plant activity during the growing season — indicating periods of highest irrigation demand.
+        This bar chart shows the average daily water loss through evaporation and plant
+        transpiration for each month. ET is low in winter and rises steadily through spring,
+        peaking in June and July. The peak ET period lines up exactly with the lowest soil
+        moisture months from Viz 2 — confirming that summer is the highest-risk period for
+        crops. Farmers should plan their heaviest irrigation schedules around the June–August
+        window when both heat and water loss are at their maximum.
+        """)
+
+    st.divider()
+
+    # ── Viz 6 ──────────────────────────────────────────────────────
+    col1, col2 = st.columns([1.2, 1])
+    with col1:
+        st.image("images/viz10_dual_axis.png",
+                 caption="Viz 6 — Monthly Rainfall vs Soil Moisture Over Time",
+                 use_container_width=True)
+    with col2:
+        st.markdown("""
+        **Viz 6 — Monthly Rainfall vs Soil Moisture Over Time**
+
+        This chart shows monthly rainfall and soil moisture
+        on the same timeline, each on its own scale so both patterns are clearly readable.
+
+        The most different finding is the **lag effect** when rainfall spikes, soil moisture
+        rises shortly after, not always in the same month. This delay reflects the time it
+        takes water to soak into the soil layers. During long dry stretches with few blue bars,
+        the orange line drops steadily, showing the slow draining of soil water reserves.
+        Understanding this lag is directly useful for deciding when to start or stop irrigation.
+        """)
+
+    st.divider()
+
+    # ── Viz 7 ──────────────────────────────────────────────────────
+    col1, col2 = st.columns([1.2, 1])
+    with col1:
+        st.image("images/viz8_wind_et.png",
+                 caption="Viz 7 — Wind Speed vs Evapotranspiration",
+                 use_container_width=True)
+    with col2:
+        st.markdown("""
+        **Viz 7 — Wind Speed vs Evapotranspiration**
+
+        This scatter plot shows whether wind speed affects how much water is lost through
+        evaporation. There is a moderate positive trend higher wind speeds tend to come with
+        higher ET, because wind removes the thin humid layer near the soil and plant surface,
+        allowing evaporation to continue faster.
+
+        While wind is not the dominant driver of ET compared to temperature, it is still a
+        meaningful contributing element. On windy days, a smart irrigation system
+        should account for the extra water loss even when temperatures seem moderate.
+        """)
+
+    st.divider()
+
+    # ── Viz 8 ──────────────────────────────────────────────────────
+    col1, col2 = st.columns([1.2, 1])
+    with col1:
+        st.image("images/viz7_seasonal_soil_moisture.png",
+                 caption="Viz 8 — Average Soil Moisture by Season",
+                 use_container_width=True)
+    with col2:
+        st.markdown("""
+        **Viz 8 — Average Soil Moisture by Season**
+
+        This bar chart directly compares average soil moisture across the four seasons.
+        Winter leads at **29.34 m³/m³**, followed by Spring at **23.36**, then Autumn
+        at **14.71**, with Summer at the lowest of **11.80 m³/m³** — less than half
+        of winter levels.
+
+        This sharp drop into summer is the signal in the entire dataset that
+        automated irrigation is most urgently needed from June through August. The
+        autumn recovery also shows that irrigation can be gradually reduced as conditions
+        cool and soil moisture starts climbing back up.
+        """)
+
+    st.divider()
+
+    # ── Viz 9 ──────────────────────────────────────────────────────
+    col1, col2 = st.columns([1.2, 1])
+    with col1:
+        st.image("images/viz9_temp_heatmap_year.png",
+                 caption="Viz 9 — Monthly Average Max Temperature by Year",
+                 use_container_width=True)
+    with col2:
+        st.markdown("""
+        **Viz 9 — Monthly Average Max Temperature by Year**
+
+        This heatmap gives a year-by-year breakdown of average maximum temperatures for
+        each month. Each row is a year, each column is a month, and darker red means hotter.
+
+        The consistent dark red band across June–August every single year confirms that
+        summer heat is a reliable annual pattern not a one-off event. This means
+        irrigation schedules can be planned well in advance based on the calendar.
+        The heatmap also makes it easy to spot unusually hot months in spring or autumn
+        that would require bringing forward or extending the irrigation season.
+        """)
+
+    st.divider()
+
+    # ── Viz 10 ─────────────────────────────────────────────────────
+    col1, col2 = st.columns([1.2, 1])
+    with col1:
+        st.image("images/viz6_correlation_heatmap.png",
+                 caption="Viz 10 — Correlation Heatmap — Climate & Soil Variables",
+                 use_container_width=True)
+    with col2:
+        st.markdown("""
+        **Viz 10 — Correlation Heatmap**
+
+        This heatmap shows how strongly every pair of variables in the dataset moves together.
+        Red means a positive relationship (both go up together), blue means an inverse
+        relationship (one goes up as the other goes down), and white means little connection.
+
+        Key patterns visible:
+        - **Temperature and ET are strongly positively correlated** — hotter days always
+          lose more water through evaporation
+        - **Soil moisture and temperature are negatively correlated** — as temperature
+          rises, soil moisture consistently drops
+        - **Volumetric soil moisture at different depths are highly correlated with each
+          other** — when the surface is dry, deeper layers tend to be dry too
+
+        This heatmap helps identify which features carry the most predictive power
+        for downstream machine learning models in this project.
         """)
 
 # ─────────────────────────────────────────────────────────────
@@ -439,7 +603,7 @@ with tabs[3]:
 # TAB 4 — Clustering
 # ─────────────────────────────────────────────────────────────
 with tabs[4]:
-    st.header("🔶 Clustering")
+    st.header("Clustering")
 
     # ── Overview ─────────────────────────────────────────────
     st.subheader("Comparing Clustering Methods")
@@ -638,7 +802,7 @@ with tabs[4]:
 
 # TAB 5 — ARM
 with tabs[5]:
-    st.header("🔗 Association Rule Mining (ARM)")
+    st.header("Association Rule Mining (ARM)")
 
     # ── (a) Overview ─────────────────────────────────────────
     st.subheader("(a) What is Association Rule Mining?")

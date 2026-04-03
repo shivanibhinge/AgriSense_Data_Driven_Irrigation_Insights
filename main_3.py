@@ -1,4 +1,4 @@
-# app.py
+# main.py
 # Streamlit Smart Water Usage Project Website
 # Requirements: streamlit, pandas, requests, scikit-learn, matplotlib, seaborn, mlxtend
 # pip install streamlit pandas requests scikit-learn matplotlib seaborn mlxtend

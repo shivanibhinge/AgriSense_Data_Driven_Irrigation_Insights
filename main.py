@@ -104,7 +104,7 @@ def plot_and_save(fig, filename):
     return buf
 
 # ─────────────────────────────────────────────────────────────
-st.title("🌾 Smart Water Usage — Predicting irrigation needs using weather, soil and vegetation")
+st.title("🌾 Smart Water Usage : Predicting irrigation needs using weather, soil and vegetation")
 # ─────────────────────────────────────────────────────────────
 
 tabs = st.tabs([
